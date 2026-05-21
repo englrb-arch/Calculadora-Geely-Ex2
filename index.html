@@ -13,22 +13,26 @@
 <title>🔋 Geely EX2 — Bateria</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0a0f1a;--green:#10b981;--green2:#059669;--amber:#f59e0b;--red:#ef4444;--cyan:#06b6d4;--text:#e2e8f0;--muted:#64748b}
+:root{--bg:#0a0f1a;--green:#10b981;--green2:#059669;--amber:#f59e0b;--red:#ef4444;--cyan:#06b6d4;--purple:#8B5CF6;--orange:#f97316;--text:#e2e8f0;--muted:#64748b;--dim:#334155}
 html,body{height:100%;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
-body{background:var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;
+body{background:linear-gradient(160deg,#0a0f1a 0%,#0d1520 40%,#0f1a2e 100%);
+color:var(--text);display:flex;align-items:center;justify-content:center;
 padding:20px;min-height:100vh;min-height:100dvh}
 .card{width:100%;max-width:380px;text-align:center}
+
 .logo{font-size:48px;margin-bottom:8px}
 h1{font-size:20px;font-weight:800;margin-bottom:2px;
 background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .sub{color:var(--muted);font-size:12px;margin-bottom:28px;letter-spacing:1px}
 
+/* BATTERY */
 .bat-wrap{position:relative;width:200px;height:100px;margin:0 auto 24px;border:3px solid #334155;border-radius:14px;overflow:hidden}
 .bat-tip{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:8px;height:30px;background:#334155;border-radius:0 4px 4px 0}
 .bat-fill{position:absolute;left:0;bottom:0;top:0;border-radius:10px;transition:width .4s ease,background .4s ease}
 .bat-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;
 text-shadow:0 2px 8px rgba(0,0,0,0.5);z-index:2;letter-spacing:-1px}
 
+/* SLIDER */
 .slider-wrap{margin-bottom:24px;padding:0 8px}
 input[type=range]{-webkit-appearance:none;width:100%;height:44px;background:transparent;outline:none}
 input[type=range]::-webkit-slider-runnable-track{height:10px;background:linear-gradient(90deg,var(--red),var(--amber),var(--green));border-radius:5px}
@@ -36,23 +40,46 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:36px;heigh
 background:white;border:3px solid var(--green);margin-top:-13px;box-shadow:0 2px 12px rgba(0,0,0,0.4);cursor:pointer}
 .pct-label{font-size:14px;color:var(--muted);margin-top:8px;font-weight:600}
 
+/* RESULTS */
 .results{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .res{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 10px}
 .res span{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;font-weight:700}
 .res strong{font-size:22px;font-weight:800;letter-spacing:-0.5px}
-.g{color:var(--green)}.a{color:var(--amber)}.c{color:var(--cyan)}.r{color:var(--red)}
+.res.full{grid-column:1/-1}
+.g{color:var(--green)}.a{color:var(--amber)}.c{color:var(--cyan)}.r{color:var(--red)}.p{color:var(--purple)}.o{color:var(--orange)}
 
-.install-banner{display:none;margin-bottom:16px;padding:14px;background:rgba(16,185,129,0.08);
-border:1px solid rgba(16,185,129,0.2);border-radius:14px;font-size:13px;color:var(--green);cursor:pointer}
-.install-banner:active{transform:scale(0.98)}
+/* CONFIG */
+.config-section{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:14px;padding:14px;margin-bottom:20px}
+.config-section h3{font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;font-weight:700}
+.config-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.cfg-item{text-align:center}
+.cfg-item label{display:block;font-size:8px;color:var(--red);text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:5px;opacity:0.8}
+.cfg-item input{width:100%;text-align:center;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);
+border-radius:10px;color:var(--red);font-size:16px;font-weight:700;padding:10px 4px;outline:none;font-family:inherit}
+.cfg-item input:focus{border-color:var(--red);box-shadow:0 0 12px rgba(239,68,68,0.15)}
 
-.share-section{margin-bottom:16px;padding:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px}
-.share-section p{font-size:12px;color:var(--muted);line-height:1.6;text-align:left}
-.share-section strong{color:var(--text)}
-.share-btn{margin-top:10px;width:100%;padding:12px;border-radius:10px;border:none;
-background:linear-gradient(135deg,var(--green),var(--green2));color:white;font-size:14px;font-weight:700;cursor:pointer;
-font-family:inherit}
+/* CUSTO COMPLETAR */
+.custo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.custo-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 10px;text-align:center}
+.custo-card span{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;font-weight:700}
+.custo-card strong{font-size:22px;font-weight:800}
+
+/* TEMPO */
+.tempo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.tempo-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 10px;text-align:center}
+.tempo-card .tipo{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-weight:700;margin-bottom:2px}
+.tempo-card .pot{font-size:10px;color:var(--dim);margin-bottom:6px}
+.tempo-card strong{font-size:22px;font-weight:800}
+
+/* SHARE */
+.share-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px;margin-bottom:16px}
+.share-section p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.share-btn{width:100%;padding:12px;border-radius:10px;border:none;
+background:linear-gradient(135deg,var(--green),var(--green2));color:white;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
 .share-btn:active{transform:scale(0.97)}
+
+.install-banner{display:none;margin-bottom:14px;padding:14px;background:rgba(16,185,129,0.08);
+border:1px solid rgba(16,185,129,0.2);border-radius:14px;font-size:13px;color:var(--green);cursor:pointer;font-weight:600}
 
 .footer{color:#334155;font-size:10px;margin-top:16px;letter-spacing:0.5px}
 </style>
@@ -74,23 +101,60 @@ font-family:inherit}
   </div>
 
   <div class="slider-wrap">
-    <input type="range" id="slider" min="0" max="100" value="100" oninput="update(this.value)">
+    <input type="range" id="slider" min="0" max="100" value="100" oninput="update()">
     <div class="pct-label">Arraste para ajustar a %</div>
   </div>
 
   <div class="results">
     <div class="res"><span>⚡ kWh Restante</span><strong class="g" id="kwh">39,4</strong></div>
-    <div class="res"><span>📉 kWh Usado</span><strong class="a" id="usado">0,0</strong></div>
-    <div class="res"><span>🛣️ Autonomia Est.</span><strong class="c" id="auto">328 km</strong></div>
-    <div class="res"><span>💰 Completar Casa R$0,90</span><strong class="g" id="custoC">R$ 0,00</strong></div>
-    <div class="res"><span>🔌 Completar Posto R$2,39</span><strong class="r" id="custoP">R$ 0,00</strong></div>
-    <div class="res"><span>⏱ Tempo Carga Casa 3,5kW</span><strong id="tempoC">0h 00min</strong></div>
+    <div class="res"><span>📉 kWh p/ Completar</span><strong class="a" id="usado">0,0</strong></div>
+    <div class="res full"><span>🛣️ Autonomia Estimada</span><strong class="c" id="auto">328 km</strong></div>
+  </div>
+
+  <div class="config-section">
+    <h3>🔧 Configurações Editáveis</h3>
+    <div class="config-grid">
+      <div class="cfg-item">
+        <label>🏠 Casa R$/kWh</label>
+        <input type="number" step="0.01" id="cfgCasa" value="0.90" onchange="saveCfg();update()">
+      </div>
+      <div class="cfg-item">
+        <label>🔌 Posto R$/kWh</label>
+        <input type="number" step="0.01" id="cfgPosto" value="2.39" onchange="saveCfg();update()">
+      </div>
+      <div class="cfg-item">
+        <label>🛣️ kWh/100km</label>
+        <input type="number" step="0.1" id="cfgKwh100" value="12" onchange="saveCfg();update()">
+      </div>
+    </div>
+  </div>
+
+  <div class="custo-grid">
+    <div class="custo-card">
+      <span>💰 Completar em Casa</span>
+      <strong class="g" id="custoC">R$ 0,00</strong>
+    </div>
+    <div class="custo-card">
+      <span>🔌 Completar no Posto</span>
+      <strong class="o" id="custoP">R$ 0,00</strong>
+    </div>
+  </div>
+
+  <div class="tempo-grid">
+    <div class="tempo-card">
+      <div class="tipo">🔌 Carregador Móvel</div>
+      <div class="pot">Máx 12A · 2,6 kW</div>
+      <strong class="p" id="tempoMovel">0h 00min</strong>
+    </div>
+    <div class="tempo-card">
+      <div class="tipo">🏠 Wallbox</div>
+      <div class="pot">7,4 kW</div>
+      <strong class="c" id="tempoWall">0h 00min</strong>
+    </div>
   </div>
 
   <div class="share-section">
-    <p>📱 <strong>Compartilhe com amigos:</strong><br>
-    Envie o link para quem tem Geely EX2.<br>
-    No iPhone: abra no Safari → Compartilhar → "Adicionar à Tela de Início"</p>
+    <p>📱 Compartilhe com amigos que têm Geely EX2!</p>
     <button class="share-btn" onclick="shareApp()">📤 Compartilhar App</button>
   </div>
 
@@ -98,69 +162,55 @@ font-family:inherit}
 </div>
 
 <script>
-const BAT=39.4, KWH100=12, CASA=0.90, POSTO=2.39, POT=3.5;
+const BAT=39.4, POT_MOVEL=2.64, POT_WALL=7.4;
 
-function update(p){
-  p=parseInt(p);
-  const rest=BAT*p/100, usado=BAT-rest, auto_km=rest/KWH100*100;
-  const cC=usado*CASA, cP=usado*POSTO, hrs=usado/POT;
-  const h=Math.floor(hrs), m=Math.round((hrs-h)*60);
+function loadCfg(){try{const d=localStorage.getItem('ex2-cfg');if(d){const c=JSON.parse(d);
+document.getElementById('cfgCasa').value=c.casa||0.90;
+document.getElementById('cfgPosto').value=c.posto||2.39;
+document.getElementById('cfgKwh100').value=c.kwh100||12}}catch{}}
+function saveCfg(){try{localStorage.setItem('ex2-cfg',JSON.stringify({
+casa:parseFloat(document.getElementById('cfgCasa').value)||0.90,
+posto:parseFloat(document.getElementById('cfgPosto').value)||2.39,
+kwh100:parseFloat(document.getElementById('cfgKwh100').value)||12}))}catch{}}
+function getCfg(){return{
+casa:parseFloat(document.getElementById('cfgCasa').value)||0.90,
+posto:parseFloat(document.getElementById('cfgPosto').value)||2.39,
+kwh100:parseFloat(document.getElementById('cfgKwh100').value)||12}}
+
+function fmtT(h){if(h<=0)return'0h 00min';const hr=Math.floor(h),mn=Math.round((h-hr)*60);
+if(mn===60)return(hr+1)+'h 00min';return hr+'h '+(mn<10?'0':'')+mn+'min'}
+
+function update(){
+  const p=parseInt(document.getElementById('slider').value),cfg=getCfg();
+  const rest=BAT*p/100,falta=BAT-rest,auto_km=rest/cfg.kwh100*100;
 
   document.getElementById('batText').textContent=p+'%';
-  document.getElementById('kwh').textContent=rest.toFixed(1).replace('.',',');
-  document.getElementById('usado').textContent=usado.toFixed(1).replace('.',',');
-  document.getElementById('auto').textContent=Math.round(auto_km)+' km';
-  document.getElementById('custoC').textContent='R$ '+cC.toFixed(2).replace('.',',');
-  document.getElementById('custoP').textContent='R$ '+cP.toFixed(2).replace('.',',');
-  document.getElementById('tempoC').textContent=h+'h '+(m<10?'0':'')+m+'min';
-
   const fill=document.getElementById('batFill');
   fill.style.width=p+'%';
   fill.style.background=p>50?'linear-gradient(90deg,#059669,#10b981)':p>20?'linear-gradient(90deg,#d97706,#f59e0b)':'linear-gradient(90deg,#dc2626,#ef4444)';
+
+  document.getElementById('kwh').textContent=rest.toFixed(1).replace('.',',');
+  document.getElementById('usado').textContent=falta.toFixed(1).replace('.',',');
+  document.getElementById('auto').textContent=Math.round(auto_km)+' km';
+  document.getElementById('custoC').textContent='R$ '+(falta*cfg.casa).toFixed(2).replace('.',',');
+  document.getElementById('custoP').textContent='R$ '+(falta*cfg.posto).toFixed(2).replace('.',',');
+  document.getElementById('tempoMovel').textContent=fmtT(falta/POT_MOVEL);
+  document.getElementById('tempoWall').textContent=fmtT(falta/POT_WALL);
 }
 
-// PWA Install
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById('installBanner').style.display = 'block';
-});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;
+document.getElementById('installBanner').style.display='block'});
+function installApp(){if(deferredPrompt){deferredPrompt.prompt();
+deferredPrompt.userChoice.then(()=>{document.getElementById('installBanner').style.display='none';deferredPrompt=null})}}
 
-function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(r => {
-      document.getElementById('installBanner').style.display = 'none';
-      deferredPrompt = null;
-    });
-  }
-}
+function shareApp(){if(navigator.share){navigator.share({title:'🔋 Geely EX2 - Calculadora de Bateria',
+text:'Calculadora de bateria do Geely EX2. Veja kWh, autonomia, custo e tempo de carga!',
+url:window.location.href}).catch(()=>{})}else{navigator.clipboard.writeText(window.location.href).then(()=>{
+const b=document.querySelector('.share-btn');b.textContent='✅ Link copiado!';setTimeout(()=>b.textContent='📤 Compartilhar App',2000)})}}
 
-// Share API
-function shareApp() {
-  if (navigator.share) {
-    navigator.share({
-      title: '🔋 Geely EX2 - Calculadora de Bateria',
-      text: 'Calculadora de bateria do Geely EX2. Veja quantos kWh tem, autonomia e custo pra completar!',
-      url: window.location.href
-    }).catch(() => {});
-  } else {
-    // Fallback: copiar link
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      const btn = document.querySelector('.share-btn');
-      btn.textContent = '✅ Link copiado!';
-      setTimeout(() => btn.textContent = '📤 Compartilhar App', 2000);
-    });
-  }
-}
-
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
-
-update(100);
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}
+loadCfg();update();
 </script>
 </body>
 </html>
