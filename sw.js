@@ -1,4 +1,4 @@
-const CACHE_NAME = 'geely-ex2-v1';
+const CACHE_NAME = 'geely-ex2-v2';
 const ASSETS = [
   './',
   './index.html',
