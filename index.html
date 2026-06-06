@@ -28,9 +28,11 @@ background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-c
 /* BATTERY */
 .bat-wrap{position:relative;width:200px;height:100px;margin:0 auto 24px;border:3px solid #334155;border-radius:14px;overflow:hidden}
 .bat-tip{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:8px;height:30px;background:#334155;border-radius:0 4px 4px 0}
-.bat-fill{position:absolute;left:0;bottom:0;top:0;border-radius:10px;transition:width .4s ease,background .4s ease}
+.bat-bg{position:absolute;inset:0;border-radius:10px;
+background:linear-gradient(90deg,#ef4444 0%,#ef4444 25%,#f97316 25%,#f97316 50%,#f59e0b 50%,#f59e0b 75%,#10b981 75%,#10b981 100%)}
+.bat-empty{position:absolute;right:0;top:0;bottom:0;background:#0d1520;border-radius:0 10px 10px 0;transition:width .4s ease}
 .bat-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;
-text-shadow:0 2px 8px rgba(0,0,0,0.5);z-index:2;letter-spacing:-1px}
+text-shadow:0 2px 8px rgba(0,0,0,0.7);z-index:2;letter-spacing:-1px}
 
 /* SLIDER */
 .slider-wrap{margin-bottom:24px;padding:0 8px}
@@ -49,14 +51,14 @@ background:white;border:3px solid var(--green);margin-top:-13px;box-shadow:0 2px
 .g{color:var(--green)}.a{color:var(--amber)}.c{color:var(--cyan)}.r{color:var(--red)}.p{color:var(--purple)}.o{color:var(--orange)}
 
 /* CONFIG */
-.config-section{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:14px;padding:14px;margin-bottom:20px}
-.config-section h3{font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;font-weight:700}
+.config-section{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:14px;margin-bottom:20px}
+.config-section h3{font-size:10px;color:var(--amber);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;font-weight:700}
 .config-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .cfg-item{text-align:center}
-.cfg-item label{display:block;font-size:8px;color:var(--red);text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:5px;opacity:0.8}
-.cfg-item input{width:100%;text-align:center;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);
-border-radius:10px;color:var(--red);font-size:16px;font-weight:700;padding:10px 4px;outline:none;font-family:inherit}
-.cfg-item input:focus{border-color:var(--red);box-shadow:0 0 12px rgba(239,68,68,0.15)}
+.cfg-item label{display:block;font-size:8px;color:var(--amber);text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:5px;opacity:0.9}
+.cfg-item input{width:100%;text-align:center;background:rgba(255,255,255,0.06);border:1px solid rgba(245,158,11,0.3);
+border-radius:10px;color:var(--text);font-size:16px;font-weight:700;padding:10px 4px;outline:none;font-family:inherit}
+.cfg-item input:focus{border-color:var(--amber);box-shadow:0 0 12px rgba(245,158,11,0.2)}
 
 /* CUSTO COMPLETAR */
 .custo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
@@ -95,7 +97,8 @@ border:1px solid rgba(16,185,129,0.2);border-radius:14px;font-size:13px;color:va
   </div>
 
   <div class="bat-wrap">
-    <div class="bat-fill" id="batFill"></div>
+    <div class="bat-bg"></div>
+    <div class="bat-empty" id="batEmpty"></div>
     <div class="bat-text" id="batText">100%</div>
     <div class="bat-tip"></div>
   </div>
@@ -185,9 +188,7 @@ function update(){
   const rest=BAT*p/100,falta=BAT-rest,auto_km=rest/cfg.kwh100*100;
 
   document.getElementById('batText').textContent=p+'%';
-  const fill=document.getElementById('batFill');
-  fill.style.width=p+'%';
-  fill.style.background=p>50?'linear-gradient(90deg,#059669,#10b981)':p>20?'linear-gradient(90deg,#d97706,#f59e0b)':'linear-gradient(90deg,#dc2626,#ef4444)';
+  document.getElementById('batEmpty').style.width=(100-p)+'%';
 
   document.getElementById('kwh').textContent=rest.toFixed(1).replace('.',',');
   document.getElementById('usado').textContent=falta.toFixed(1).replace('.',',');
